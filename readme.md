@@ -34,7 +34,7 @@ yarn start
 
 |-- dist: 빌드 결과물. 번들링되는 파일이 위치합니다.
 |-- src : 프로젝트 소스 폴더
-    |-- assets: 숨고 초기 더미데이터 json 형태의 파일
+    |-- assets: 초기 더미데이터 json 형태의 파일
         |-- input.json: 인풋 더미데이터
         |-- output.json: 아웃풋 더미데이터(형식참고용)
     |-- components

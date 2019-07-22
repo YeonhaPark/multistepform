@@ -1,0 +1,64 @@
+/* ------------------------------------------------------------------ */
+
+$teal: #00c7ae;
+$white: #fff;
+$main-font-cl: #323232;
+$main-border-cl: #878484;
+$light-gray: #e1e1e194;
+$breakpoints: (
+	"small": (
+		max-width: 500px
+	),
+	"medium": (
+		max-width: 768px
+	),
+	"desktop": (
+		min-width: 769px
+	)
+);
+
+// 각 컴포넌트의 scss 파일 작성 시 반응형 구현을 쉽게 하고자 만든 것입니다.
+// 공부중입니다. 완전히 이해하고나면 설명해드릴께요.
+@mixin respond-to($breakpoint) {
+	$raw-query: map-get($breakpoints, $breakpoint);
+
+	@if $raw-query {
+		$query: if(
+			type-of($raw-query) == "string",
+			unquote($raw-query),
+			inspect($raw-query)
+		);
+
+		@media #{$query} {
+			@content;
+		}
+	} @else {
+		@error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+	}
+}
+
+/**
+위의 respond-to() 활용예시 입니다.
+
+.foo {
+  color: red;
+
+  @include respond-to('medium') {
+    color: blue;
+  }
+}
+
+이렇게 코드를 작성할 경우 해상도가 medium 사이즈로 줄어들 경우 컬러값이 파란색이 됩니다.
+
+**/
+
+$mobile: "screen and (max-width: 768px)";
+$desktop: "(min-width: 769px)";
+
+// 경로 단축용 변수 선언
+// Components와 Pages 한정으로 사용 가능. style폴더 사용 불가.
+// 해당 변수는 반드시 #{ } 로 감싸줘야합니다.
+// } 다음에 바로 /파일명 을 적으시면 됩니다.
+
+$imgsrc: "../../Img";
